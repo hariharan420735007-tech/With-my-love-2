@@ -1,5 +1,5 @@
 // Countdown target: 29 November 2026, 12:00 AM India Standard Time.
-const TARGET_TIME = new Date("2026-11-29T00:00:00+05:30").getTime();
+const TARGET_TIME = new Date("2026-11-26T00:00:00+05:30").getTime();
 const $ = (id) => document.getElementById(id);
 const screens = [
   "countdownScreen",
@@ -26,15 +26,15 @@ function showScreen(id) {
 function pad(n) {
   return String(n).padStart(2, "0");
 }
-function updateCountdown(){
+function updateCountdown() {
   const remaining = TARGET_TIME - Date.now();
 
-  if(remaining <= 0){
-    ["days","hours","minutes","seconds"].forEach(
-      id => $(id).textContent = "00"
+  if (remaining <= 0) {
+    ["days", "hours", "minutes", "seconds"].forEach(
+      (id) => ($(id).textContent = "00"),
     );
 
-    if(!surpriseUnlocked){
+    if (!surpriseUnlocked) {
       surpriseUnlocked = true;
       showScreen("introScreen");
     }
@@ -42,9 +42,9 @@ function updateCountdown(){
   }
 
   const d = Math.floor(remaining / 86400000);
-  const h = Math.floor(remaining % 86400000 / 3600000);
-  const m = Math.floor(remaining % 3600000 / 60000);
-  const s = Math.floor(remaining % 60000 / 1000);
+  const h = Math.floor((remaining % 86400000) / 3600000);
+  const m = Math.floor((remaining % 3600000) / 60000);
+  const s = Math.floor((remaining % 60000) / 1000);
 
   $("days").textContent = pad(d);
   $("hours").textContent = pad(h);
@@ -452,11 +452,17 @@ canvas.addEventListener("pointerup", onAimEnd);
 canvas.addEventListener("pointercancel", onAimEnd);
 function finalShot() {
   playHitTone();
-  for (let i = 0; i < 26; i++) spawnHeart($("celebrationBg"), true);
+
+  for (let i = 0; i < 26; i++) {
+    spawnHeart($("celebrationBg"), true);
+  }
+
   setTimeout(() => {
     showScreen("celebrationScreen");
     startConfetti();
-    playMelody();
+
+    // Song இப்போது தானாக Play ஆகாது.
+    // Candles அணைந்த பிறகுதான் Play ஆகும்.
   }, 500);
 }
 $("finalHitBtn").addEventListener("click", finalShot);
@@ -559,12 +565,7 @@ $("replayBtn").addEventListener("click", () => {
 
 (() => {
   const symbols = ["♥", "♡", "❤"];
-  const colors = [
-    "#ff7da8",
-    "#ffb5ca",
-    "#ffd3e0",
-    "#ff8fb3"
-  ];
+  const colors = ["#ff7da8", "#ffb5ca", "#ffd3e0", "#ff8fb3"];
 
   let lastTime = 0;
 
@@ -578,30 +579,152 @@ $("replayBtn").addEventListener("click", () => {
     const heart = document.createElement("span");
 
     heart.className = "cursor-heart";
-    heart.textContent =
-      symbols[Math.floor(Math.random() * symbols.length)];
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 
     heart.style.left = event.clientX + "px";
     heart.style.top = event.clientY + "px";
 
-    heart.style.setProperty(
-      "--heart-size",
-      (12 + Math.random() * 13) + "px"
-    );
+    heart.style.setProperty("--heart-size", 12 + Math.random() * 13 + "px");
 
     heart.style.setProperty(
       "--heart-color",
-      colors[Math.floor(Math.random() * colors.length)]
+      colors[Math.floor(Math.random() * colors.length)],
     );
 
     document.body.appendChild(heart);
 
-    heart.addEventListener("animationend", () => {
-      heart.remove();
-    }, { once: true });
+    heart.addEventListener(
+      "animationend",
+      () => {
+        heart.remove();
+      },
+      { once: true },
+    );
   });
 })();
 
 createSparkles();
 updateCountdown();
 setInterval(updateCountdown, 250);
+
+
+
+
+
+
+let micStream;
+let audioContext;
+let analyser;
+let blowDetected = 0;
+let candlesBlown = false;
+let birthdaySongStarted = false;
+
+async function startMic() {
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        echoCancellation: false,
+        noiseSuppression: false,
+        autoGainControl: false
+      }
+    });
+
+    audioContext = new AudioContext();
+
+    const source = audioContext.createMediaStreamSource(micStream);
+
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+
+    source.connect(analyser);
+
+    document.getElementById("micButton").textContent =
+      "🎤 Microphone Ready! Blow Now";
+
+    document.getElementById("blowMessage").textContent =
+      "Blow towards your laptop microphone! 💨";
+
+    detectBlow();
+
+ } catch (error) {
+  console.error("Microphone Error:", error);
+
+  if (error.name === "NotAllowedError") {
+    alert("Microphone permission denied! Please allow microphone access in browser settings.");
+  } else if (error.name === "NotFoundError") {
+    alert("Laptop microphone not detected!");
+  } else if (error.name === "NotReadableError") {
+    alert("Microphone is being used by another application. Close it and try again.");
+  } else {
+    alert("Microphone Error: " + error.name + "\n" + error.message);
+  }
+}
+}
+
+function detectBlow() {
+  if (!analyser || candlesBlown) return;
+
+  const data = new Uint8Array(analyser.fftSize);
+
+  analyser.getByteTimeDomainData(data);
+
+  let sum = 0;
+
+  for (let i = 0; i < data.length; i++) {
+    const value = (data[i] - 128) / 128;
+    sum += value * value;
+  }
+
+  const volume = Math.sqrt(sum / data.length);
+
+  if (volume > 0.12) {
+    blowDetected++;
+  } else {
+    blowDetected = Math.max(0, blowDetected - 1);
+  }
+
+  if (blowDetected > 7) {
+    blowOutCandles();
+    return;
+  }
+
+  requestAnimationFrame(detectBlow);
+}
+
+function blowOutCandles() {
+  if (candlesBlown) return;
+
+  candlesBlown = true;
+
+  document.querySelectorAll(".flame").forEach(flame => {
+    flame.classList.add("off");
+  });
+
+  document.getElementById("blowMessage").textContent =
+    "Wish granted! Happy Birthday! ❤️";
+
+  if (audioContext) {
+    audioContext.close();
+  }
+
+  if (micStream) {
+    micStream.getTracks().forEach(track => track.stop());
+  }
+
+  playBirthdaySong();
+}
+
+function playBirthdaySong() {
+  if (birthdaySongStarted) return;
+
+  birthdaySongStarted = true;
+
+  // உங்கள் Birthday song audio file
+  const song = new Audio("birthday-song.mp3");
+
+  song.volume = 0.8;
+
+  song.play().catch(error => {
+    console.log("Song playback failed:", error);
+  });
+}
