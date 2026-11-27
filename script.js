@@ -1,4 +1,3 @@
-
 // Countdown target: 29 November 2026, 12:00 AM India Standard Time.
 const TARGET_TIME = new Date("2026-11-26T00:00:00+05:30").getTime();
 const $ = (id) => document.getElementById(id);
@@ -37,7 +36,7 @@ function updateCountdown() {
 
   if (remaining <= 0) {
     ["days", "hours", "minutes", "seconds"].forEach(
-      (id) => ($(id).textContent = "00")
+      (id) => ($(id).textContent = "00"),
     );
 
     if (!surpriseUnlocked) {
@@ -125,16 +124,9 @@ function resizeCanvas() {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   canvas.width = Math.round(rect.width * dpr);
-  canvas.height = Math.round((rect.width * 560) / 1000 * dpr);
+  canvas.height = Math.round(((rect.width * 560) / 1000) * dpr);
 
-  ctx.setTransform(
-    canvas.width / 1000,
-    0,
-    0,
-    canvas.height / 560,
-    0,
-    0
-  );
+  ctx.setTransform(canvas.width / 1000, 0, 0, canvas.height / 560, 0, 0);
 }
 
 window.addEventListener("resize", resizeCanvas);
@@ -149,7 +141,7 @@ function heartPath(x, y, size) {
     x - size * 0.58,
     y - size * 0.95,
     x,
-    y - size * 0.45
+    y - size * 0.45,
   );
 
   ctx.bezierCurveTo(
@@ -158,7 +150,7 @@ function heartPath(x, y, size) {
     x + size * 1.05,
     y - size * 0.25,
     x,
-    y + size * 0.34
+    y + size * 0.34,
   );
 
   ctx.closePath();
@@ -433,7 +425,7 @@ function drawGame(t = performance.now()) {
   ctx.fillText(
     dragState ? "RELEASE TO SHOOT" : "PULL BACK • AIM • RELEASE",
     28,
-    32
+    32,
   );
 
   bursts.forEach((b) => {
@@ -451,7 +443,7 @@ function drawGame(t = performance.now()) {
         b.y + Math.sin(a) * b.life * 1.5,
         3,
         0,
-        Math.PI * 2
+        Math.PI * 2,
       );
       ctx.fill();
     }
@@ -639,22 +631,14 @@ function spawnHeart(parent, fast = false) {
   const el = document.createElement("span");
 
   el.className = "heart-particle";
-  el.textContent = ["♥", "♡", "✦", "❤"][
-    Math.floor(Math.random() * 4)
-  ];
+  el.textContent = ["♥", "♡", "✦", "❤"][Math.floor(Math.random() * 4)];
 
   el.style.left = Math.random() * 100 + "%";
   el.style.fontSize = 12 + Math.random() * 27 + "px";
 
-  el.style.setProperty(
-    "--fall",
-    (fast ? 2.2 : 4 + Math.random() * 5) + "s"
-  );
+  el.style.setProperty("--fall", (fast ? 2.2 : 4 + Math.random() * 5) + "s");
 
-  el.style.setProperty(
-    "--drift",
-    Math.random() * 180 - 90 + "px"
-  );
+  el.style.setProperty("--drift", Math.random() * 180 - 90 + "px");
 
   parent.appendChild(el);
 
@@ -680,9 +664,7 @@ function startConfetti() {
 // ORIGINAL BIRTHDAY MELODY
 function getAudio() {
   if (!audioCtx) {
-    audioCtx = new (
-      window.AudioContext || window.webkitAudioContext
-    )();
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   }
 
   if (audioCtx.state === "suspended") {
@@ -713,15 +695,13 @@ function note(freq, start, duration, volume = 0.055, wave = "sine") {
 }
 
 const romantic = [
-  523.25, 659.25, 783.99, 659.25,
-  587.33, 698.46, 880, 698.46,
-  523.25, 659.25, 783.99, 1046.5,
+  523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 880, 698.46, 523.25, 659.25,
+  783.99, 1046.5,
 ];
 
 const birthday = [
-  523.25, 523.25, 587.33, 523.25,
-  698.46, 659.25, 523.25, 523.25,
-  587.33, 523.25, 783.99, 698.46,
+  523.25, 523.25, 587.33, 523.25, 698.46, 659.25, 523.25, 523.25, 587.33,
+  523.25, 783.99, 698.46,
 ];
 
 function playMelody() {
@@ -755,10 +735,7 @@ function playMelody() {
       index = 0;
       musicTimer = setTimeout(tick, 700);
     } else {
-      musicTimer = setTimeout(
-        tick,
-        index < romantic.length ? 360 : 420
-      );
+      musicTimer = setTimeout(tick, index < romantic.length ? 360 : 420);
     }
   }
 
@@ -793,8 +770,7 @@ $("replayBtn").addEventListener("click", () => {
   });
 
   $("micButton").textContent = "🎤 Enable Laptop Microphone";
-  $("blowMessage").textContent =
-    "Make a wish and blow the candles! 💗";
+  $("blowMessage").textContent = "Make a wish and blow the candles! 💗";
 
   player.hits = 0;
   player.name = "";
@@ -833,29 +809,23 @@ $("replayBtn").addEventListener("click", () => {
 
     heart.className = "cursor-heart";
 
-    heart.textContent =
-      symbols[Math.floor(Math.random() * symbols.length)];
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 
     heart.style.left = event.clientX + "px";
     heart.style.top = event.clientY + "px";
 
-    heart.style.setProperty(
-      "--heart-size",
-      12 + Math.random() * 13 + "px"
-    );
+    heart.style.setProperty("--heart-size", 12 + Math.random() * 13 + "px");
 
     heart.style.setProperty(
       "--heart-color",
-      colors[Math.floor(Math.random() * colors.length)]
+      colors[Math.floor(Math.random() * colors.length)],
     );
 
     document.body.appendChild(heart);
 
-    heart.addEventListener(
-      "animationend",
-      () => heart.remove(),
-      { once: true }
-    );
+    heart.addEventListener("animationend", () => heart.remove(), {
+      once: true,
+    });
   });
 })();
 
@@ -879,7 +849,7 @@ async function startMic() {
 
   if (!navigator.mediaDevices?.getUserMedia) {
     alert(
-      "Microphone access needs localhost or HTTPS. Open this website using Live Server."
+      "Microphone access needs localhost or HTTPS. Open this website using Live Server.",
     );
     return;
   }
@@ -893,14 +863,11 @@ async function startMic() {
       },
     });
 
-    blowAudioContext = new (
-      window.AudioContext || window.webkitAudioContext
-    )();
+    blowAudioContext = new (window.AudioContext || window.webkitAudioContext)();
 
     await blowAudioContext.resume();
 
-    const source =
-      blowAudioContext.createMediaStreamSource(micStream);
+    const source = blowAudioContext.createMediaStreamSource(micStream);
 
     blowAnalyser = blowAudioContext.createAnalyser();
 
@@ -909,38 +876,28 @@ async function startMic() {
 
     source.connect(blowAnalyser);
 
-    $("micButton").textContent =
-      "🎤 Microphone Ready — Blow Now!";
+    $("micButton").textContent = "🎤 Microphone Ready — Blow Now!";
 
-    $("blowMessage").textContent =
-      "Blow towards your laptop microphone! 💨";
+    $("blowMessage").textContent = "Blow towards your laptop microphone! 💨";
 
     blowFrames = 0;
 
     detectBlow();
-
   } catch (error) {
     console.error("Microphone Error:", error);
 
     if (error.name === "NotAllowedError") {
       alert(
-        "Microphone permission denied. Allow microphone access in browser settings."
+        "Microphone permission denied. Allow microphone access in browser settings.",
       );
     } else if (error.name === "NotFoundError") {
-      alert(
-        "Laptop microphone not detected. Check your microphone device."
-      );
+      alert("Laptop microphone not detected. Check your microphone device.");
     } else if (error.name === "NotReadableError") {
       alert(
-        "Microphone is being used by another app. Close that app and try again."
+        "Microphone is being used by another app. Close that app and try again.",
       );
     } else {
-      alert(
-        "Microphone Error: " +
-        error.name +
-        "\n" +
-        error.message
-      );
+      alert("Microphone Error: " + error.name + "\n" + error.message);
     }
   }
 }
@@ -987,8 +944,7 @@ function blowOutCandles() {
     flame.classList.add("blown");
   });
 
-  $("blowMessage").textContent =
-    "Wish granted! Happy Birthday! ❤️";
+  $("blowMessage").textContent = "Wish granted! Happy Birthday! ❤️";
 
   $("micButton").textContent = "❤️ Wish Granted!";
 
@@ -1010,4 +966,19 @@ function blowOutCandles() {
   setTimeout(() => {
     playMelody();
   }, 800);
+}
+
+let birthdaySongStarted = false;
+
+function playBirthdaySong() {
+  if (birthdaySongStarted) return;
+
+  birthdaySongStarted = true;
+
+  const song = new Audio("birthday-song.mp3");
+  song.volume = 0.8;
+
+  song.play().catch((error) => {
+    console.log("Song playback failed:", error);
+  });
 }
