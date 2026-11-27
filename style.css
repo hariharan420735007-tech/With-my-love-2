@@ -920,3 +920,25 @@ h3 {
     transform: translate(-50%, -42px) scale(1.3);
   }
 }
+
+.blow-message {
+  color: #ffc1d3;
+  font-size: 13px;
+  margin: 12px 0;
+  text-align: center;
+}
+
+#micButton {
+  margin: 10px auto 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.candle i {
+  transition: opacity .3s, transform .3s;
+}
+
+.candle i.blown {
+  opacity: 0;
+  transform: translateY(-15px) scale(0);
+}
