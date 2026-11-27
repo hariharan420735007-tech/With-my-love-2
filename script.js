@@ -1,5 +1,5 @@
 // Countdown target: 29 November 2026, 12:00 AM India Standard Time.
-const TARGET_TIME = new Date("2026-11-26T00:00:00+05:30").getTime();
+const TARGET_TIME = new Date("2026-11-29T00:00:00+05:30").getTime();
 const $ = (id) => document.getElementById(id);
 
 const screens = [
