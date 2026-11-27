@@ -1,199 +1,186 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#170914" />
-    <title>A Little Love, A Big Surprise ❤️</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
-    <div class="sparkle-field" id="sparkleField"></div>
-    <main>
-      <section id="countdownScreen" class="screen active">
-        <div class="hero-card glass">
-          <div class="eyebrow">
-            <span class="tiny-heart">♥</span> A LITTLE SOMETHING FROM THE HEART
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#170914" />
+  <title>A Little Love, A Big Surprise ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="sparkle-field" id="sparkleField"></div>
+  <main>
+    <section id="countdownScreen" class="screen active">
+      <div class="hero-card glass">
+        <div class="eyebrow">
+          <span class="tiny-heart">♥</span> A LITTLE SOMETHING FROM THE HEART
+        </div>
+        <div class="hero-heart" aria-hidden="true">♥</div>
+        <p class="script-line">Some moments are worth waiting for</p>
+        <h1>Something <em>magical</em><br />is on its way.</h1>
+        <p class="subcopy">
+          A tiny countdown to a day filled with smiles, surprises and lots of
+          love.
+        </p>
+        <div class="countdown" aria-label="Countdown">
+          <div class="time-unit">
+            <strong id="days">00</strong><span>DAYS</span>
           </div>
-          <div class="hero-heart" aria-hidden="true">♥</div>
-          <p class="script-line">Some moments are worth waiting for</p>
-          <h1>Something <em>magical</em><br />is on its way.</h1>
-          <p class="subcopy">
-            A tiny countdown to a day filled with smiles, surprises and lots of
-            love.
-          </p>
-          <div class="countdown" aria-label="Countdown">
-            <div class="time-unit">
-              <strong id="days">00</strong><span>DAYS</span>
-            </div>
-            <i></i>
-            <div class="time-unit">
-              <strong id="hours">00</strong><span>HOURS</span>
-            </div>
-            <i></i>
-            <div class="time-unit">
-              <strong id="minutes">00</strong><span>MINUTES</span>
-            </div>
-            <i></i>
-            <div class="time-unit">
-              <strong id="seconds">00</strong><span>SECONDS</span>
-            </div>
+          <i></i>
+          <div class="time-unit">
+            <strong id="hours">00</strong><span>HOURS</span>
           </div>
-          <p class="unlock-note">
-            <span class="pulse-dot"></span> Your surprise unlocks at midnight ·
-            29 November 2026
-          </p>
-          <div class="bottom-flourish">
-            made with <span>♥</span> just for you
+          <i></i>
+          <div class="time-unit">
+            <strong id="minutes">00</strong><span>MINUTES</span>
+          </div>
+          <i></i>
+          <div class="time-unit">
+            <strong id="seconds">00</strong><span>SECONDS</span>
           </div>
         </div>
-      </section>
+        <p class="unlock-note">
+          <span class="pulse-dot"></span> Your surprise unlocks at midnight ·
+          29 November 2026
+        </p>
+        <div class="bottom-flourish">
+          made with <span>♥</span> just for you
+        </div>
+      </div>
+    </section>
 
-      <section id="introScreen" class="screen">
-        <div class="form-card glass">
-          <div class="mini-orbit">♥</div>
-          <p class="script-line">Before the magic begins...</p>
-          <h2>Tell me a little<br /><em>about you.</em></h2>
-          <p class="subcopy">
-            This little game has a special finish line, and it's all yours.
-          </p>
-          <form id="detailsForm">
-            <label for="personName">Your lovely name</label>
-            <input
-              id="personName"
-              name="personName"
-              type="text"
-              maxlength="28"
-              placeholder="Enter your name"
-              autocomplete="given-name"
-              required
-            />
-            <label for="personAge">How old are you turning?</label>
-            <input
-              id="personAge"
-              name="personAge"
-              type="number"
-              min="1"
-              max="100"
-              placeholder="Enter your age"
-              required
-            />
-            <button class="primary-btn" type="submit">
-              Let's play <span>↗</span>
+    <section id="introScreen" class="screen">
+      <div class="form-card glass">
+        <div class="mini-orbit">♥</div>
+        <p class="script-line">Before the magic begins...</p>
+        <h2>Tell me a little<br /><em>about you.</em></h2>
+        <p class="subcopy">
+          This little game has a special finish line, and it's all yours.
+        </p>
+        <form id="detailsForm">
+          <label for="personName">Your lovely name</label>
+          <input id="personName" name="personName" type="text" maxlength="28" placeholder="Enter your name"
+            autocomplete="given-name" required />
+          <label for="personAge">How old are you turning?</label>
+          <input id="personAge" name="personAge" type="number" min="1" max="100" placeholder="Enter your age"
+            required />
+          <button class="primary-btn" type="submit">
+            Let's play <span>↗</span>
+          </button>
+        </form>
+        <p class="tiny-note">
+          A little aim, a little patience, and a whole lot of heart.
+        </p>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen">
+      <header class="game-header">
+        <div>
+          <p class="eyebrow">THE HEARTFELT CHALLENGE</p>
+          <h2>Take aim, <em id="playerName">sweetheart</em>.</h2>
+        </div>
+        <div class="progress-pill">
+          <span id="hitCount">0</span><b>/</b><span id="goalCount">0</span><small>HEARTS HIT</small>
+        </div>
+      </header>
+      <div class="game-intro">
+        Hit every heart target to reveal your final surprise.
+      </div>
+      <div class="game-wrap glass">
+        <canvas id="gameCanvas" width="1000" height="560"
+          aria-label="Slingshot archery game. Pull the arrow back and release to hit the hearts."></canvas>
+        <div class="game-overlay" id="gameOverlay">
+          <div class="overlay-card">
+            <div class="overlay-icon">🏹</div>
+            <h3>Ready, aim, <em>love!</em></h3>
+            <p>
+              Tap or click a glowing heart to shoot an arrow. You need
+              <strong id="neededText">0</strong> successful hits. Your game
+              starts automatically.
+            </p>
+            <button class="primary-btn" id="startGameBtn">
+              Start the game <span>↗</span>
             </button>
-          </form>
-          <p class="tiny-note">
-            A little aim, a little patience, and a whole lot of heart.
-          </p>
+          </div>
         </div>
-      </section>
+      </div>
+      <div class="game-footer">
+        <span>✦ Pull back from the bow to aim</span><span id="gameMessage" aria-live="polite">Your first heart is
+          waiting...</span><span>♥ Release to shoot</span>
+      </div>
+    </section>
 
-      <section id="gameScreen" class="screen game-screen">
-        <header class="game-header">
-          <div>
-            <p class="eyebrow">THE HEARTFELT CHALLENGE</p>
-            <h2>Take aim, <em id="playerName">sweetheart</em>.</h2>
-          </div>
-          <div class="progress-pill">
-            <span id="hitCount">0</span><b>/</b><span id="goalCount">0</span
-            ><small>HEARTS HIT</small>
-          </div>
-        </header>
-        <div class="game-intro">
-          Hit every heart target to reveal your final surprise.
+    <section id="finalScreen" class="screen final-screen">
+      <div class="final-content">
+        <p class="eyebrow">
+          YOU DID IT, <span id="finalNameTop">STAR</span> ✦
+        </p>
+        <div class="final-heart-wrap">
+          <div class="final-heart">♥</div>
+          <div class="heart-ring"></div>
         </div>
-        <div class="game-wrap glass">
-          <canvas
-            id="gameCanvas"
-            width="1000"
-            height="560"
-            aria-label="Slingshot archery game. Pull the arrow back and release to hit the hearts."
-          ></canvas>
-          <div class="game-overlay" id="gameOverlay">
-            <div class="overlay-card">
-              <div class="overlay-icon">🏹</div>
-              <h3>Ready, aim, <em>love!</em></h3>
-              <p>
-                Tap or click a glowing heart to shoot an arrow. You need
-                <strong id="neededText">0</strong> successful hits. Your game
-                starts automatically.
-              </p>
-              <button class="primary-btn" id="startGameBtn">
-                Start the game <span>↗</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="game-footer">
-          <span>✦ Pull back from the bow to aim</span
-          ><span id="gameMessage" aria-live="polite"
-            >Your first heart is waiting...</span
-          ><span>♥ Release to shoot</span>
-        </div>
-      </section>
+        <h1>One last <em>heart.</em></h1>
+        <p class="subcopy">
+          You've made it all the way here. Take your final shot to unlock your
+          birthday magic.
+        </p>
+        <button class="primary-btn" id="finalHitBtn">
+          Send the final arrow <span>↗</span>
+        </button>
+      </div>
+    </section>
 
-      <section id="finalScreen" class="screen final-screen">
-        <div class="final-content">
-          <p class="eyebrow">
-            YOU DID IT, <span id="finalNameTop">STAR</span> ✦
-          </p>
-          <div class="final-heart-wrap">
-            <div class="final-heart">♥</div>
-            <div class="heart-ring"></div>
+    <section id="celebrationScreen" class="screen celebration-screen">
+      <div class="celebration-bg" id="celebrationBg"></div>
+      <div class="celebration-content">
+        <p class="eyebrow">A DAY AS SPECIAL AS YOU</p>
+        <div class="cake-scene">
+          <div class="candle-row">
+            <div class="candle"><i></i></div>
+            <div class="candle"><i></i></div>
+            <div class="candle"><i></i></div>
           </div>
-          <h1>One last <em>heart.</em></h1>
-          <p class="subcopy">
-            You've made it all the way here. Take your final shot to unlock your
-            birthday magic.
-          </p>
-          <button class="primary-btn" id="finalHitBtn">
-            Send the final arrow <span>↗</span>
+          <div class="cake-top"></div>
+          <div class="cake-middle"></div>
+          <div class="cake-bottom"></div>
+          <div class="cake-plate"></div>
+        </div>
+        <p id="blowMessage" class="blow-message">
+          Make a wish and blow the candles! 💗
+        </p>
+
+        <button id="micButton" class="music-btn" onclick="startMic()">
+          🎤 Enable Laptop Microphone
+        </button>
+        <p class="script-line">Wishing you the sweetest day</p>
+        <h1>Happy Birthday,<br /><em id="birthdayName">Beautiful!</em></h1>
+        <p class="birthday-message">
+          May your days be full of laughter, your heart full of love, and
+          every little wish find its way to you. Keep shining, keep smiling,
+          and never stop being wonderfully you. ❤️
+        </p>
+        <div class="wish-signature">With lots of love <span>♥</span></div>
+        <div class="music-controls">
+          <button id="musicToggle" class="music-btn" aria-pressed="false">
+            ♫ Play your birthday melody</button><button id="replayBtn" class="text-btn">
+            Replay the surprise ↻
           </button>
         </div>
-      </section>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
 
-      <section id="celebrationScreen" class="screen celebration-screen">
-        <div class="celebration-bg" id="celebrationBg"></div>
-        <div class="celebration-content">
-          <p class="eyebrow">A DAY AS SPECIAL AS YOU</p>
-          <div class="cake-scene">
-            <div class="candle-row">
-              <div class="candle"><i></i></div>
-              <div class="candle"><i></i></div>
-              <div class="candle"><i></i></div>
-            </div>
-            <div class="cake-top"></div>
-            <div class="cake-middle"></div>
-            <div class="cake-bottom"></div>
-            <div class="cake-plate"></div>
-          </div>
-          <p class="script-line">Wishing you the sweetest day</p>
-          <h1>Happy Birthday,<br /><em id="birthdayName">Beautiful!</em></h1>
-          <p class="birthday-message">
-            May your days be full of laughter, your heart full of love, and
-            every little wish find its way to you. Keep shining, keep smiling,
-            and never stop being wonderfully you. ❤️
-          </p>
-          <div class="wish-signature">With lots of love <span>♥</span></div>
-          <div class="music-controls">
-            <button id="musicToggle" class="music-btn" aria-pressed="false">
-              ♫ Play your birthday melody</button
-            ><button id="replayBtn" class="text-btn">
-              Replay the surprise ↻
-            </button>
-          </div>
-        </div>
-      </section>
-    </main>
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <script src="script.js"></script>
-  </body>
 </html>
