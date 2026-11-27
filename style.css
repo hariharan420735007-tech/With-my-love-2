@@ -939,6 +939,7 @@ h3 {
 }
 
 .candle i.blown {
+  animation: none;
   opacity: 0;
   transform: translateY(-15px) scale(0);
 }
